@@ -605,11 +605,14 @@ namespace uPLibrary.Networking.M2Mqtt
 
                 // start thread for raising received message event from broker
                 Fx.StartThread(this.DispatchEventThread);
-                
+
                 // start thread for handling inflight messages queue to broker asynchronously (publish and acknowledge)
                 Fx.StartThread(this.ProcessInflightThread);
 
                 this.IsConnected = true;
+            }
+            else {
+                this.isRunning = false;
             }
             return connack.ReturnCode;
         }
